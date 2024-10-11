@@ -274,15 +274,18 @@
     abstracts = abstract
   }
 
-  box(inset: (top: 16pt, bottom: 16pt), stroke: (top: 1pt + gray, bottom: 1pt + gray), {
-
-    abstracts.map(abs => {
-      set par(justify: true)
-      text(fill: theme, weight: "semibold", size: 9pt, abs.title)
-      parbreak()
-      abs.content
-    }).join(parbreak())
-  })
+  box(
+    inset: (top: 16pt, bottom: 16pt), 
+    stroke: (top: 1pt + gray, bottom: 1pt + gray), 
+    {
+      if (type(abstract) != "none") {abstracts.map(abs => {
+        set par(justify: true)
+        text(fill: theme, weight: "semibold", size: 9pt, abs.title)
+        parbreak()
+        abs.content
+      }).join(parbreak())
+    }}
+  )
   if (keywords.len() > 0) {
     parbreak()
     text(size: 9pt, {
